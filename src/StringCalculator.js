@@ -15,7 +15,7 @@ function add(numbers) {
         throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(", ")}`);
     }
 
-    return numberArray.reduce((sum, num) => sum + parseInt(num), 0);
+    return numberArray.filter(num => parseInt(num) <= 1000).reduce((sum, num) => sum + parseInt(num), 0);
 }
 
 
@@ -29,5 +29,6 @@ function add(numbers) {
 // console.log(add("//|\n2|3|4"));
 // console.log(add("//#\n5#6#7"));
 // console.log(add("1,-2,3,-4"));
+// console.log(add("2,1001,6"))
 
 module.exports = add;
