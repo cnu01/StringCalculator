@@ -3,9 +3,10 @@ function add(numbers) {
     let delimiterPattern = /,|\n/;
 
     if (numbers.startsWith("//")) {
-        const customDelimiter = numbers[2];
-        delimiterPattern = new RegExp(`[${customDelimiter},\n]`);
-        numbers = numbers.slice(4);
+        const delimiterEndIndex = numbers.indexOf("]\n");
+        const customDelimiter = numbers.substring(3, delimiterEndIndex);
+        delimiterPattern = new RegExp(`[${customDelimiter.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}]`);
+        numbers = numbers.substring(delimiterEndIndex + 2); 
     }
 
     const numberArray = numbers.split(delimiterPattern).filter(num => num !== "");
@@ -29,6 +30,7 @@ function add(numbers) {
 // console.log(add("//|\n2|3|4"));
 // console.log(add("//#\n5#6#7"));
 // console.log(add("1,-2,3,-4"));
-// console.log(add("2,1001,6"))
+// console.log(add("2,1001,6"));
+console.log(add("//[***]\n1***2***3"))
 
 module.exports = add;
