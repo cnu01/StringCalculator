@@ -25,7 +25,11 @@ test("ignores trailing delimiters", () => {
 });
 
 test("supports custom delimiters", () => {
-    expect(add("//;\n1;2")).toBe(3); 
-    expect(add("//|\n2|3|4")).toBe(9);  
+    expect(add("//;\n1;2")).toBe(3);
+    expect(add("//|\n2|3|4")).toBe(9);
     expect(add("//#\n5#6#7")).toBe(18);
+});
+
+test("throws an error when negative numbers are present", () => {
+    expect(() => add("1,-2,3,-4")).toThrow("Negative numbers not allowed: -2, -4");
 });
