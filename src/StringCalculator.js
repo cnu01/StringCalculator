@@ -31,6 +31,8 @@ function add(numbers) {
 // console.log(add("//#\n5#6#7"));
 // console.log(add("1,-2,3,-4"));
 // console.log(add("2,1001,6"));
-console.log(add("//[***]\n1***2***3"))
+// console.log(add("//[***]\n1***2***3"));
+// console.log(add("//[*][%]\n1*2%3"));
+// console.log(add("//[##][%%]\n4##5%%6"));
 
 module.exports = add;
