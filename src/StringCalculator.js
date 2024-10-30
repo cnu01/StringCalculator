@@ -1,20 +1,26 @@
 function add(numbers) {
     numbers = String(numbers);
-    const sanitizedNumbers = numbers.replace(/\n/g, ",");
+    let delimiterPattern = /,|\n/;
 
-    if (sanitizedNumbers === "") {
-        return 0;
+    if (numbers.startsWith("//")) {
+        const customDelimiter = numbers[2];
+        delimiterPattern = new RegExp(`[${customDelimiter},\n]`);
+        numbers = numbers.slice(4);
     }
 
-    const numberArray = sanitizedNumbers.split(",").filter(num => num !== ""); 
+    const numberArray = numbers.split(delimiterPattern).filter(num => num !== "");
     return numberArray.reduce((sum, num) => sum + parseInt(num), 0);
 }
 
-console.log(add(''));
+
+// console.log(add(''));
 console.log(add('10'));
-console.log(add('1,5'));
-console.log(add('1,2,3,4'));
-console.log(add('1,2\n,3,4'));
-console.log(add('1\n'))
+// console.log(add('1,5'));
+// console.log(add('1,2,3,4'));
+// console.log(add('1,2\n,3,4'));
+// console.log(add('1\n'))
+console.log(add("//;\n1;2;5;6;7;\n8;9;\n10"))
+console.log(add("//|\n2|3|4"))
+console.log(add("//#\n5#6#7"))
 
 module.exports = add;

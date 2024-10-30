@@ -23,3 +23,9 @@ test("handles new lines between numbers", () => {
 test("ignores trailing delimiters", () => {
     expect(add("1,\n")).toBe(1);
 });
+
+test("supports custom delimiters", () => {
+    expect(add("//;\n1;2")).toBe(3); 
+    expect(add("//|\n2|3|4")).toBe(9);  
+    expect(add("//#\n5#6#7")).toBe(18);
+});
